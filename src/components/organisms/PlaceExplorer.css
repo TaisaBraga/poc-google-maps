@@ -1,0 +1,95 @@
+.explorer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 480px;
+  overflow: hidden;
+  border: 1px solid #eceee8;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 8px 28px #1c35220c;
+}
+.explorer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 24px 22px 16px;
+}
+.eyebrow {
+  color: #526b48;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  font-weight: 800;
+}
+.explorer-head h2 {
+  margin: 7px 0 4px;
+  color: #283c31;
+  font-family: Georgia, serif;
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+}
+.explorer-head p {
+  margin: 0;
+  color: #5f685f;
+  font-size: 11px;
+}
+.result-count {
+  padding: 6px 9px;
+  border-radius: 20px;
+  background: #f1f5ed;
+  color: #4c6846;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.category-list {
+  display: flex;
+  gap: 7px;
+  padding: 2px 18px 17px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.category-list::-webkit-scrollbar {
+  display: none;
+}
+.category-chip {
+  padding: 8px 11px;
+  font-size: 11px;
+}
+.places-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 22px 9px;
+  border-top: 1px solid #eff0eb;
+}
+.places-heading h3 {
+  margin: 0;
+  color: #37443a;
+  font-size: 12px;
+}
+.places-heading span {
+  color: #646b64;
+  font-size: 10px;
+}
+.places-list {
+  overflow-y: auto;
+  flex: 1;
+}
+.empty-state {
+  margin: 0;
+  padding: 32px 24px;
+  color: #5f675f;
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: center;
+}
+.explorer-foot {
+  margin: 0;
+  padding: 12px 20px;
+  border-top: 1px solid #eff0eb;
+  color: #626a62;
+  font-size: 9px;
+  text-align: center;
+}

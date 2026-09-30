@@ -1,0 +1,75 @@
+.place-carousel {
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 14px 8px;
+  background: transparent;
+}
+
+.carousel-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.carousel-heading h2 {
+  margin: 0;
+  color: #24392b;
+  font: 500 18px Georgia, serif;
+  text-shadow: 0 1px 3px #fff;
+}
+
+.carousel-heading > span {
+  color: #34483a;
+  font-size: 11px;
+  text-shadow: 0 0 4px #fff, 0 0 8px #fff;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 2px 2px 8px;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: #bdcbb7 transparent;
+  scrollbar-width: thin;
+}
+
+.carousel-item {
+  flex: 0 0 min(290px, 88%);
+  overflow: hidden;
+  border: 1px solid #e8ece4;
+  border-radius: 13px;
+  background: white;
+  scroll-snap-align: center;
+  box-shadow: 0 3px 14px #22362920;
+}
+
+.place-carousel .place-card {
+  height: 100%;
+  min-height: 96px;
+  border: 0;
+}
+
+.carousel-empty {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid #e8ece4;
+  border-radius: 12px;
+  color: #5f675f;
+  background: #fff;
+  font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .place-carousel {
+    padding: 26px 10px 6px;
+  }
+  .carousel-heading h2 {
+    font-size: 16px;
+  }
+}

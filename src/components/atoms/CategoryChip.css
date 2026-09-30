@@ -1,0 +1,30 @@
+.category-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border: 1px solid #e8e9e4;
+  border-radius: 999px;
+  background: #fff;
+  color: #555c53;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: 0.18s ease;
+  white-space: nowrap;
+}
+.category-chip:hover {
+  border-color: #a8c5a5;
+  background: #f7faf5;
+}
+.category-chip.is-active {
+  background: #234c3b;
+  border-color: #234c3b;
+  color: #fff;
+}
+.category-chip:focus-visible {
+  outline: 3px solid #16452d;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #fff;
+}

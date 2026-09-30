@@ -1,0 +1,5 @@
+.icon {
+  display: inline-grid;
+  place-items: center;
+  line-height: 1;
+}
