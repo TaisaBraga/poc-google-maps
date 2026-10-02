@@ -29,8 +29,11 @@ function getCategory(primaryType: string | null | undefined): Place["category"] 
   return null;
 }
 
-export function findNearbyPlaces(center: google.maps.LatLngLiteral) {
-  const cacheKey = `${center.lat.toFixed(4)},${center.lng.toFixed(4)}`;
+export function findNearbyPlaces(
+  center: google.maps.LatLngLiteral,
+  distanceOrigin: google.maps.LatLngLiteral = center,
+) {
+  const cacheKey = `${center.lat.toFixed(4)},${center.lng.toFixed(4)}:${distanceOrigin.lat.toFixed(4)},${distanceOrigin.lng.toFixed(4)}`;
   const cachedSearch = nearbySearchCache.get(cacheKey);
   if (cachedSearch) return cachedSearch;
 
@@ -59,8 +62,9 @@ export function findNearbyPlaces(center: google.maps.LatLngLiteral) {
           lat: place.location.lat(),
           lng: place.location.lng(),
         };
-        const distance = getDistanceInKm(center, position);
-        if (distance > SEARCH_RADIUS_KM) return [];
+        const searchDistance = getDistanceInKm(center, position);
+        if (searchDistance > SEARCH_RADIUS_KM) return [];
+        const distance = getDistanceInKm(distanceOrigin, position);
 
         return [
           {

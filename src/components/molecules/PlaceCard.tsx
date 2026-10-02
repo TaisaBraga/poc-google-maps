@@ -54,7 +54,7 @@ export function PlaceCard({
           </span>
           <span className={place.openNow ? "open" : "hours"}>
             {place.openNow === undefined
-              ? "Perto de você"
+              ? "da sua localização"
               : place.openNow
                 ? "Aberto agora"
                 : "Fechado agora"}

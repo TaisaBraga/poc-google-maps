@@ -122,6 +122,36 @@
   font-size: 11px;
   font-weight: 700;
 }
+.recenter-button {
+  position: absolute;
+  z-index: 1;
+  top: 58px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 13px;
+  border: 1px solid #e3e9dd;
+  border-radius: 10px;
+  background: #fff;
+  color: #31543d;
+  box-shadow: 0 4px 15px #293d2610;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.recenter-button:hover {
+  background: #f3f7f1;
+}
+.recenter-button:focus-visible {
+  outline: 3px solid #31543d;
+  outline-offset: 2px;
+}
+.recenter-button span:first-child {
+  font-size: 17px;
+  line-height: 1;
+}
 .map-error {
   position: absolute;
   z-index: 2;
@@ -148,5 +178,10 @@
   .radius-label {
     right: 10px;
     top: 10px;
+  }
+  .recenter-button {
+    top: 52px;
+    right: 10px;
+    padding: 9px 11px;
   }
 }

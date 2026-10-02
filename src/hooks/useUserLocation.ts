@@ -26,7 +26,8 @@ export function useUserLocation() {
         );
         setLoading(false);
       },
-      { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 },
+      // Permission prompts can remain open longer than a typical location fix.
+      { enableHighAccuracy: true, timeout: 60000, maximumAge: 60000 },
     );
   }, []);
   return { position, error, loading, requestLocation };

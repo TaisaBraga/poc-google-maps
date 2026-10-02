@@ -1,5 +1,5 @@
 import { AdvancedMarker, Map } from "@vis.gl/react-google-maps";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { Place } from "../../types";
 import { PlacePin } from "../atoms/PlacePin";
 import { findNearbyPlaces } from "../../services/nearbyPlaces";
@@ -7,17 +7,19 @@ import "./MapPanel.css";
 
 function NearbySearch({
   center,
+  distanceOrigin,
   onResults,
   onSearchError,
 }: {
   center: google.maps.LatLngLiteral;
+  distanceOrigin: google.maps.LatLngLiteral;
   onResults: (places: Place[]) => void;
   onSearchError: (message: string) => void;
 }) {
   useEffect(() => {
     let cancelled = false;
 
-    void findNearbyPlaces(center)
+    void findNearbyPlaces(center, distanceOrigin)
       .then((places) => {
         if (cancelled) return;
         onSearchError("");
@@ -40,7 +42,7 @@ function NearbySearch({
     return () => {
       cancelled = true;
     };
-  }, [center, onResults, onSearchError]);
+  }, [center, distanceOrigin, onResults, onSearchError]);
 
   return null;
 }
@@ -61,6 +63,9 @@ export function MapPanel({
   onSearchError: (message: string) => void;
   searchError: string;
 }) {
+  const [searchCenter, setSearchCenter] = useState(center);
+  const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
+
   return (
     <section
       className="map-panel"
@@ -75,9 +80,16 @@ export function MapPanel({
         zoomControl
         clickableIcons={false}
         mapId={import.meta.env.VITE_GOOGLE_MAP_ID || "DEMO_MAP_ID"}
+        onIdle={(event) => {
+          setMapInstance(event.map);
+          const mapCenter = event.map.getCenter();
+          if (!mapCenter) return;
+          setSearchCenter({ lat: mapCenter.lat(), lng: mapCenter.lng() });
+        }}
       >
         <NearbySearch
-          center={center}
+          center={searchCenter}
+          distanceOrigin={center}
           onResults={onResults}
           onSearchError={onSearchError}
         />
@@ -105,6 +117,16 @@ export function MapPanel({
           </AdvancedMarker>
         ))}
       </Map>
+      <button
+        className="recenter-button"
+        type="button"
+        onClick={() => mapInstance?.panTo(center)}
+        aria-label="Centralizar mapa na sua localização"
+        title="Centralizar na minha localização"
+      >
+        <span aria-hidden="true">◎</span>
+        <span>Minha localização</span>
+      </button>
       <p className="sr-only" id="map-keyboard-help">
         Para percorrer os estabelecimentos com teclado, use a visualização Lista.
         Os pins do mapa podem ser ativados com o mouse ou toque.

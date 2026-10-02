@@ -121,6 +121,11 @@ function App() {
         <section className="location-prompt" aria-label="Compartilhar localização" role={locationError ? "alert" : "status"}>
           <span aria-hidden="true">⌖</span>
           <p>{locationError || (loading ? "Aguardando autorização para acessar sua localização…" : "Solicitando autorização para acessar sua localização…")}</p>
+          {locationError && (
+            <button type="button" onClick={requestLocation} disabled={loading}>
+              Tentar novamente
+            </button>
+          )}
         </section>
       )}
     </main>
